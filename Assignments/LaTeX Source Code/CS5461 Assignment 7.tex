@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[a4paper,margin=1in]{geometry}
+\title{CS5461 Assignment 7}
+\author{Li Jiaru (SID: A0332008U)}
+\date{12 October 2025}
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item
+\begin{enumerate}[label=(\alph*)]
+\item No, and the only blocking pair is $(D, Z)$. Currently we match $(A, Z)$ and $(D, W)$, but $D$ prefers $Z$ to $W$ and $Z$ prefers $D$ to $A$.
+\item First, students $A$, $B$ and $C$ propose to hospitals $Z$, $Y$ and $X$ respectively and get matched. Then student $D$ proposes to hospital $Z$ which will decide to choose student $D$. Then student $A$ now has to turn to hospital $W$ and gets matched. The algorithm is then complete and the final outcome is $\{(A, W), (B, Y), (C, X), (D, Z)\}$.
+\item First, hospitals $W$ and $X$ propose to students $A$ and $D$ respectively and get matched. Then hospital $Y$ proposes to student $A$ which will decide to get hospital $W$. Then hospital $Y$ now has to turn to student $B$ and gets matched. Then hospital $Z$ proposes to student $B$ which will decide to get hopsital $Y$. Then hospital $Z$ proposes to student $D$ which will decide to choose hospital $Z$. Then hospital $X$ proposes to student $A$ and $B$, getting rejected before finally matching with student $C$. The algorithm is then complete and the final outcome is $\{(A, W), (B, Y), (C, X), (D, Z)\}$.
+\item Since both outcomes in (b) and (c) coincide, we know that the stable matching must be unique as stated in the lecture. Therefore there is precisely one stable matching.
+\end{enumerate}
+\item Assume that there are $n$ students $s_1,s_2,\dots,s_n$ and $n$ hospitals, and let the common hospital preference list be $s_1\succ s_2\succ\dots\succ s_n$.
+
+First we see that in any stable matching, $s_1$ must be matched to their favourite hospital, say $h$. Otherwise, if $s_1$ is matched to some other hospital $h'$, then since $h'$ also prefers $s_1$ to their matched student, $(s_1, h')$ forms a blocking pair.
+
+After we remove the pair $(s_1, h)$, we see that each remaining hospital still maintains the same preference list $s_2\succ s_3\succ\dots\succ s_n$ among the remaining students $s_2,s_3,\dots,s_n$. Thus by the same argument, $s_2$ must also get her favourite remaining hospital.
+
+We could continue this process inductively until there are no students or hospitals left, and we conclude that in any stable matching each student is matched uniquely with one hospital and vice versa. Therefore the original statement holds.
+\item
+\begin{enumerate}[label=(\alph*)]
+\item Note that we can rewrite the condition $4x+\sqrt y = 1$ as $y = (1-4x)^2$.
+
+Since $u_1(x)=x$ and $u_2(y)=y$, to find the Nash bargaining solution we are going to maximise $f(x):=xy=x(1-4x)^2$ where $x\ge 0, y\ge 0$.
+
+We have $f'(x)=(1-12x)(1-4x)=0\implies x=1/12, x=1/4$. We also check the boundary $x=0$.
+
+Now we compute $f(0)=0, f(1/12)=1/27, f(1/4)=0$, so the maximum occurs when $x=1/12, y=(1-4x)^2=4/9$ giving the final answer $\boxed{(1/12, 4/9)}$.
+\item Here we are maximising $g(x):=x+y=x+(1-4x)^2$ where $x\ge 0, y\ge 0$.
+
+We have $g'(x)=32x-7=0\implies x=7/32$. We also check the boundary $x=0$.
+
+Now we compute $g(0)=1, g(7/32)=15/64$, so the maximum occurs when $x=0, y=(1-4x)^2=1$ giving the final answer $\boxed{(0,1)}$.
+\end{enumerate}
+\end{enumerate}
+\end{document}

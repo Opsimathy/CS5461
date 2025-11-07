@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage[a4paper,margin=1in]{geometry}
+\title{CS5461 Assignment 2}
+\author{Li Jiaru (SID: A0332008U)}
+\date{22 August 2025}
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item
+\begin{enumerate}[label=(\alph*)]
+\item
+Consider the normal-form game as given.
+\begin{table}[h!]\centering\setlength{\extrarowheight}{2pt}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ & W & X & Y & Z \\ \hline
+A & $8,6$ & $1,6$ & $2,7$ & $6,4$ \\ \hline
+B & $2,4$ & $5,5$ & $4,5$ & $7,4$ \\ \hline
+C & $0,2$ & $5,2$ & $3,6$ & $6,3$ \\ \hline
+D & $3,5$ & $4,6$ & $3,5$ & $0,4$ \\ \hline
+\end{tabular}
+\end{table}
+
+Then we notice that
+\begin{itemize}
+\item D is strictly dominated by $0.2\mathrm{A}+0.8\mathrm{B}$ since $8\times0.2+2\times0.8=3.2>3$ for W, $1\times0.2+5\times0.8=4.2>4$ for X, $2\times0.2+4\times0.8=3.6>3$ for Y and $6\times0.2+7\times0.8=6.8>0$ for Z,
+\item W is strictly dominated by $0.5\mathrm{X}+0.5\mathrm{Y}$ since $6\times0.5+7\times0.5=6.5>5$ for A, $5\times0.5+5\times0.5=5>4$ for B, $2\times0.5+6\times0.5=3>2$ for C and $6\times0.5+5\times0.5=5.5>5$ for D,
+\item Z is strictly dominated by Y since $7>4$ for A, $5>4$ for B, $6>3$ for C and $5>4$ for D.
+\end{itemize}
+Therefore D, W and Z are strictly dominated in the original game, but the other five actions are not.
+\item
+By iterated removal of dominated strategies, we only need to consider the following subgame in normal form,
+\begin{table}[h!]\centering\setlength{\extrarowheight}{2pt}
+\begin{tabular}{|c|c|c|}
+\hline
+ & X & Y \\ \hline
+A & $1,6$ & $2,7$ \\ \hline
+B & $5,5$ & $4,5$ \\ \hline
+C & $5,2$ & $3,6$ \\ \hline
+\end{tabular}
+\end{table}
+
+from which we can delete A as well since it is now strictly dominated by B or C. Therefore, we are left with
+\begin{table}[h!]\centering\setlength{\extrarowheight}{2pt}
+\begin{tabular}{|c|c|c|}
+\hline
+ & X & Y \\ \hline
+B & $5,5$ & $4,5$ \\ \hline
+C & $5,2$ & $3,6$ \\ \hline
+\end{tabular}
+\end{table}
+
+We consider the case where the row player plays B. Then the column player will be indifferent between X and Y. When the column player plays X, the row player will be indifferent between B and C as well. However, when the row player plays C, the column player will play Y as a best response, and when the column player plays Y, the column player will play B as a best response.
+
+Therefore we need to calculate their expected utility in each case.
+
+For the column player, when the row player plays $(\mathrm{B},\mathrm{C})$ with probability $(p,1-p)$ where $0\le p\le 1$, we have
+$$u_{\mathrm{column}}(\mathrm{X})=5p+2(1-p)=2+3p,\quad u_{\mathrm{column}}(\mathrm{Y})=5p+6(1-p)=6-p,$$
+for which $2+3p=6-p\implies p=1$ is the only possibility for indifference, i.e., the row player always plays B at Nash equilibrium.
+
+For the row player, when the column player plays $(\mathrm{X},\mathrm{Y})$ with probability $(q,1-q)$ where $0\le q\le 1$, we have
+$$u_{\mathrm{row}}(\mathrm{B})=5q+4(1-q)=4+q,\quad u_{\mathrm{row}}(\mathrm{C})=5q+3(1-q)=3+2q,$$
+but since the row player should always play B, we must have $4+q\ge 3+2q\implies q\le 1$ for X to be a best response.
+
+Therefore, the Nash equilibria of the original game consist of the column player playing $(\mathrm{W},\mathrm{X},\mathrm{Y},\mathrm{Z})$ with probability $(0,q,1-q,0)$ for $0\le q\le1$ and the row player always playing B.
+\end{enumerate}
+\item
+\begin{enumerate}[label=(\alph*)]
+\item Note that when $t<2$, $(\mathrm{T},\mathrm{R})$ and $(\mathrm{B},\mathrm{L})$ are the only two pure Nash equilibria.
+
+Similarly, when $t>2$, $(\mathrm{T},\mathrm{L})$ and $(\mathrm{B},\mathrm{R})$ are the only two pure Nash equilibria.
+
+However, when $t=2$, all of $(\mathrm{T},\mathrm{R})$, $(\mathrm{B},\mathrm{R})$ and $(\mathrm{B},\mathrm{L})$ are the pure Nash equilibria.
+
+Therefore, the answer is for all $t\ne 2$.
+\item Note that the column player is indifferent only when the row player always plays B, since $3>2$.
+
+Also, note that the row player is indifferent either when the row player always plays L, or when $t=2$, in which case the row player can freely choose any mixed strategy.
+
+This is the only case in which a mixed Nash equilibrium will arise.
+
+Therefore, the answer is also for all $t\ne 2$.
+\end{enumerate}
+\item
+\begin{enumerate}[label=(\alph*)]
+\item False.\item False.\item True.
+\end{enumerate}
+\end{enumerate}
+\end{document}

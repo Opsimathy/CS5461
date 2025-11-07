@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[a4paper,margin=1in]{geometry}
+\title{CS5461 Assignment 8}
+\author{Li Jiaru (SID: A0332008U)}
+\date{10 October 2025}
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item
+\begin{enumerate}[label=(\alph*)]
+\item To achieve the maximum utilitarian welfare, we allocate each good to the player with the highest valuation. Thus the allocation is $A_1=(g_1), A_2=(g_2,g_3), A_3=(g_4)$ with utilitarian welfare $40+40+30+50=\boxed{160}$.
+\item To achieve the maximum egalitarian welfare, note that the maximum of the minimum utility among players is $40$, since making this any higher will require players $1$ and $2$ to take at least $2$ goods but then player $3$ would receive nothing. Thus the maximum egalitarian welfare is $\boxed{40}$ with one possible allocation being the same as in (a).
+\item No, since if we instead give $g_2$ to player $1$ or $2$ then they would receive a higher utiity while the utility of player $3$ remains the same.
+\item Yes. Indeed we have $\mathrm{MMS}_1=30$ (e.g., $\{g_1\}, \{g_2\}, \{g_3,g_4\}$) for player 1, $\mathrm{MMS}_2=30$ (e.g., $\{g_1,g_2\}, \{g_3\}, \{g_4\}$) for player 2, $\mathrm{MMS}_3=20$ (e.g., $\{g_1\}, \{g_2,g_3\}, \{g_4\}$) for player 3. The allocation $A$ gives utilities $(40,30,20)$ which are no lower than the maximum share $(30,30,20)$.
+\end{enumerate}
+\item Denote the set of all MMS allocations in that instance as $S$. We claim that an MMS allocation $A\in S$ that maximises the utilitarian welfare must also be Pareto optimal.
+
+Otherwise, by definition of Pareto optimality there must exist another allocation $B$ such that the utilities of all players under $B$ must be greater than or equal to those under $A$, with at least one of the inequalities being strict.
+
+But then we also have $B\in S$ because as the utilities do not become lower they must remain at least the MMS for each player.
+
+However, $B$ now attains a strictly higher utilitarian welfare than $A$ since at least one of the inequalities is strict. This is a contradiction, so $A$ is indeed Pareto optimal.
+\item The answer is true. Intuitively, s-EF1 requires the existence of a single good $g_j$ per bundle $A_j$ that simultaneously `frees everyone’s envy' of $j$ on removal. We use a similar proof as the EF1 proof given in the lecture.
+
+Indeed, in the round-robin algorithm, any player ahead of $j$ in the round-robin ordering does not envy $j$ at all since they get to choose before $j$, so s-EF1 must hold due to the stronger envy-freeness condition.
+
+For any player $i$ behind $j$, we consider the first round to start with $i$’s first pick. Then as in shown in the lecture, $i$ does not envy $j$ up to $j$’s first good $g_j$. But note that this good is the same for each $i$, since from that perspective $j$ is always the first one to choose: in other words, it does not depend on $i$ (which might not be true in EF1). This is precisely the definition of s-EF1 where we show the existence of a $g_j\in A_j$.
+
+Therefore s-EF1 holds for all the players, and so in conclusion the algorithm is always s-EF1.
+\end{enumerate}
+\end{document}

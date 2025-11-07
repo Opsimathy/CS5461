@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[a4paper,margin=1in]{geometry}
+\title{CS5461 Assignment 10}
+\author{Li Jiaru (SID: A0332008U)}
+\date{24 October 2025}
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item
+\begin{enumerate}
+\item Since $900+300>700+100$, we should allocate the first room to player 1 and the second room to player 2.
+\item Let the prices be $p_1$ and $p_2$ respectively with $p_1+p_2=1000$. Then the utilities are $u_1=900-p_1$ and $u_2=300-p_2$ respectively. To ensure the maximin condition, we require $900-p_1=300-p_2$, so that $p_1=800$ and $p_2=200$ and the price vector required is $\boxed{(800, 200)}$.
+\end{enumerate}
+\item
+\begin{enumerate}
+\item No. We construct a counterexample. Consider the setting as in question 1. Under truthful reporting, player 1 gets a utility of $900-800=100$. Now if player 1 underreports a value of $800$ for the first room, then the mechanism still returns the same allocation; however, for the new prices $p_1'$ and $p_2'$, we now require $800-p_1'=300-p_2'\implies p_1'=750$, so player 1 now gets a higher utility of $900-750=150$.
+\item Yes. The total welfare is the difference between the sum of values and the sum of prices. As the sum of prices is fixed, any different allocation with a lower total value would lower the total welfare and thus cannot Pareto-dominate. Changing only prices can’t create a Pareto improvement either, since prices just transfer utility between players while keeping the sum fixed. In other words, we could not make someone strictly better off without making someone else worse off, which is precisely the definition of Pareto optimality.
+\item Yes. This mechanism returns a maximin price vector. As stated in lecture, it is unique and also equitable. For the two-player case, equitablility means that the difference between the two players' utilities is minimised, and this minimum value is obviously zero. Thus they must obtain the same utility.
+\end{enumerate}
+\item
+\begin{enumerate}
+\item Yes. As all the values are the same, the utilities must also be the same to ensure envy-freeness. As utility is the difference between value and price, the prices must also be some constant. This is the unique envy-free price vector as required.
+\item No. Indeed, each player is indifferent between each room, so any room allocation is envy-free and there isn’t a unique one.
+\end{enumerate}
+\end{enumerate}
+\end{document}

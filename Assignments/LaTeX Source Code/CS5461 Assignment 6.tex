@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage[a4paper,margin=1in]{geometry}
+\title{CS5461 Assignment 6}
+\author{Li Jiaru (SID: A0332008U)}
+\date{20 September 2025}
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item
+\begin{enumerate}[label=(\alph*)]
+\item We are given the game $[5; 1,2,2,4]$, so $4!=24$ permutations in total. In all permutations:
+\begin{itemize}
+\item Player 1 is pivotal only in the cases $(4,1,2,2)$ and $(2,2,1,4)$, each of which having 2 permutations. Therefore $\mathrm{Sh}_1=4/24=1/6$.
+\item Player 4 is pivotal unless they are first or last, so $\mathrm{Sh}_4=1/2$.
+\item Players 2 and 3 are symmetric, so by efficiency $\mathrm{Sh}_2=\mathrm{Sh}_3=(1-1/6-1/2)/2=1/6$.
+\end{itemize}
+Therefore the Shapley values are $\boxed{(1/6,1/6,1/6,1/2)}$.
+\item Here each boy always adds 1 and each girl always adds 2 regardless of the coalition. Hence each player’s marginal contribution is constant. By definition, the Shapley values are $\boxed{(1,1,1,2,2,2)}$ for the three boys and the three girls.
+\item There are $7!=5040$ permutations in total. In all permutations:
+\begin{itemize}
+\item Players 3 to 7 are symmetric and pivotal only when they are third and the first two are players 1 and 2 in any order, giving $2\times4!=48$ permutations. Therefore $\mathrm{Sh}_i=48/5040=1/105$ for $i\in\{3,4,5,6,7\}$.
+\item Players 1 and 2 are symmetric, so by efficiency $\mathrm{Sh}_1=\mathrm{Sh}_2=(1-6\times1/105)/2=10/21$.
+\end{itemize}
+Therefore the Shapley values are $\boxed{(10/21,10/21,1/105,1/105,1/105,1/105,1/105)}$.
+\end{enumerate}
+\item
+\begin{enumerate}[label=(\alph*)]
+\item No.
+\item Yes.
+\item No.
+\end{enumerate}
+\item
+\begin{enumerate}[label=(\alph*)]
+\item False.
+\item True.
+\item False.
+\end{enumerate}
+\end{enumerate}
+\end{document}

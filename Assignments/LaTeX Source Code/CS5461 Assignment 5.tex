@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage[a4paper,margin=1in]{geometry}
+\title{CS5461 Assignment 5}
+\author{Li Jiaru (SID: A0332008U)}
+\date{13 September 2025}
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item
+\begin{enumerate}[label=(\alph*)]
+\item Yes.
+\item Yes.
+\item No.
+\item No.
+\end{enumerate}
+\item
+Recall that the core is defined as a set of vectors $\mathbf{x}$ such that
+\begin{align*}
+\sum_{i\in N}x_i&=v(N),\\
+\sum_{i\in S}x_i&\ge v(S),\quad\forall S\subseteq N.
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+\item Given the weighted voting game $(1,2,3;4)$, we can rewrite the constraints as
+\begin{align}
+x_1+x_3&\ge 1,\\
+x_2+x_3&\ge 1,\\
+x_1+x_2+x_3&=1,\\
+x_1,x_2,x_3&\ge 0,
+\end{align}
+since the winning coalitions are $(1,3)$, $(2,3)$ and $(1,2,3)$. By (1) we have $x_1+x_2+x_3\ge x_2+1$, so by (3) we get $1\ge x_2+1\implies x_2\le 0$, and by (4) we must have $x_2=0$. Therefore by (2) we require $x_3\ge 1$, and by efficiency we need $x_3=1$. Finally by (3) we can see that $x_1=0$. Therefore the only element in the core is $\boxed{(0,0,1)}$.
+\item The only winning coalitions are $(2,3)$ and $(1,2,3)$, so we can rewrite the constraints as
+\begin{align*}
+x_2+x_3&\ge 6,\\
+x_1+x_2+x_3&=6,\\
+x_1,x_2,x_3&\ge 0.
+\end{align*}
+Therefore by efficiency we must have $x_1=0$, and the core is the set of elements $\boxed{\{(0,t,6-t)|0\le t\le 6\}}$.
+\item Here we can rewrite the constraints as
+\begin{align*}
+x_1+x_2+x_i&\ge 1,\quad i\in\{3,4,\dots,10\},\\
+x_1+x_2+\dots+x_{10}&=1,\\
+x_1,x_2,\dots,x_{10}&\ge 0.
+\end{align*}
+Again by efficiency we require all $x_i=0$ for $i\in\{3,4,\dots,10\}$, and the core is the set of elements $\boxed{\{(t,1-t,0,0,\dots,0)|0\le t\le 1\}}$.
+\item Note that $v(\{i\})=|\{i\}|+1=2$ for any single player $i$. But we have $x_i\ge v(\{i\})$, so $v(N)=\displaystyle\sum_{i\in N} x_i\ge\displaystyle\sum_{i\in N}v(\{i\})=10\times2=20$, contradicting with $v(N)=|N|+1=11$. Therefore the core is empty.
+\end{enumerate}
+\item \begin{enumerate}[label=(\alph*)]
+\item Consider the following game such that for each subset $S\subseteq N=\{1,2,3,4\}$,
+\[v(S)=\begin{cases}
+1 & \text{if $|S|\ge3$}, \\
+0 & \text{otherwise},
+\end{cases}\]
+which is monotone and superadditive. We now justify that its core is empty.
+
+By definition, the winning coalitions are all the sets with 3 or 4 players. Consider any set of 3 players $T$. There are 4 of them, each of which must satisfy $x(T)\ge v(T)=1$. We then have
+$$\sum_T x(T)=4x(T)\ge 4,$$
+but the left hand side is just $3(x_1+x_2+x_3+x_4)=3v(N)$ since each player occurs exactly 3 times. Therefore $v(N)\ge4/3$, contradicting with efficiency $v(N)=1$. Thus the core is empty, as required.
+\item Consider the following game such that with $N=\{1,2,3\}$, we have
+\begin{align*}
+v(\{1\})=v(\{2\})=v(\{3\})&=0,\\
+v(\{1,2\})=v(\{1,3\})=1,\quad v(\{2,3\})&=0,\\
+v(N)=1,\quad v(\varnothing)&=0,
+\end{align*}
+which is monotone and superadditive. We now justify that it is not convex.
+
+Recall that a game is convex if for $S\subseteq T\subseteq N$ and $i\in N\backslash T$, we have
+$$v(S\cup\{i\})-v(S)\le v(T\cup\{i\})-v(T).$$
+However, if we take $S=\varnothing$, $T=\{2\}$, $i=3$, then by definition,
+$$v(S)=0,\quad v(T)=1,\quad v(S\cup\{i\})=1,\quad v(T\cup\{i\})=0,$$
+so that
+$$v(S\cup\{i\})-v(S)=1-0=1,\quad v(T\cup\{i\})-v(T)=0-1=-1.$$
+Therefore, this game is not convex, as required.
+\end{enumerate}
+\end{enumerate}
+\end{document}

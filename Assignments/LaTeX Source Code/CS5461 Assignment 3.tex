@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage[a4paper,margin=1in]{geometry}
+\title{CS5461 Assignment 3}
+\author{Li Jiaru (SID: A0332008U)}
+\date{2 September 2025}
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item
+\begin{enumerate}[label=(\alph*)]
+\item The VCG mechanism allocates 2 durians to Alice and 1 durian to Bob.
+\item With Alice present, Bob only gets 1 durian so his utility is 3. If Alice is absent, Bob gets all 3 durians, so his utility becomes 7. Therefore Alice should be charged with $7-3=4$.
+
+With Bob present, Alice only gets 2 durians so her utility is 6. If Bob is absent, Alice gets all 3 durians, so her utility becomes 8. Therefore Bob should be charged with $8-6=2$.
+\item The VCG mechanism allocates all 3 durians to Cindy.
+\item With Cindy present, both Alice and Bob get no durians so their utility is 0. If Cindy is absent, from previous parts we know that the optimal allocation guarantees a utility of $3+6=9$. Therefore Cindy should be charged with $9-0=9$.
+
+Since both Alice and Bob get nothing, they should pay nothing either.
+\item No, this is impossible. As given in the lecture, in the VCG mechanism, truthful reporting is a dominant strategy. Submitting false valuations will only make at most as much as truthful reporting does, so strict improvement is not possible.
+\end{enumerate}
+\item No, not necessarily. We consider a simple counterexample. Let us denote $v_1$ and $v_2$ to be the value for bidder 1 and 2, respectively, with $v_1>v_2>0$.
+
+Under truthful valuations, bidder 1 submits $v_1$ and bidder 2 submits $v_2$, so bidder 1 will win and pay $v_2$, giving a total utility of $v_1-v_2$.
+
+However, if they could cooperate, bidder 2 could submit a bid of $0$ and bidder 1 could then submit any positive bid. In this case, bidder 1 will still win but they pay nothing, giving a total utility of $v_1-0=v_1$.
+
+Since $v_2>0$, $v_1>v_1-v_2$ so truthful reporting is no longer dominant.
+\item No, not necessarily. We consider a simple counterexample. Suppose that there are three bidders. Your value for the item is 2, and the other two bids are 3 and 1.
+
+Under truthful bidding, you lose and get a utility of 0.
+
+However, you can bid anything greater than 3 and get the item, so that you only pay the third-highest bid, which is 1 in this case, and your utility becomes $2-1=1$. Therefore, the auction is no longer truthful.
+\end{enumerate}
+\end{document}
